@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="quizz.css">
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=YourChosenFont" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b9bd7a26e3.js" crossorigin="anonymous"></script>
+    <title>Quiz Interativo</title>
+</head>
+
+<body>
+    <div class="quiz-container">
+       
+        <div class="question">
+            <p class="quizz">Quizz do Ensino Médio  <i class="fa-regular fa-pen-to-square" style="color: #ffffff;"></i></p>
+            <h2 class="title"></h2>
+            <img class="imagens" src="" alt="">
+            <div class="options">
+                <div class="options-row">
+                    <button class="option"></button>
+                    <button class="option"></button>
+                </div>
+                <div class="options-row">
+                    <button class="option"></button>
+                    <button class="option"></button>
+                </div>
+            </div>
+        </div>
+        <div class="score">
+             <p class="point"></p><i class="fa-solid fa-medal" style="color: #ffffff;"></i><span class="pontos" id="score-label">  Pontuação:</span> <span class="score" id="score">0</span></p> <p class="medio"></p>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: 'Normalmente, quantos litros de sangue uma pessoa tem?',
+                image: 'sangue.jpg',
+                options: ['a) Tem entre 2 a 4 litros.', 'b) Tem entre 4 a 6 litros.', 'c)  Tem 10 litros.', 'd) Tem 7 litros.'],
+                correctAnswer: 'b) Tem entre 4 a 6 litros.'
+            },
+            {
+                question: 'De quem é a famosa frase “Penso, logo existo”?',
+                image: 'penso.png',
+                options: ['a) Platão.', 'b) Galileu Galilei.', 'c) Nikola Tesla.', 'd) Descartes.'],
+                correctAnswer: 'd) Descartes.'
+            },
+            {
+                question: 'Qual é o maior planeta do Sistema Solar?',
+                image: 'sistemaSolar.png',
+                options: ['a) Terra', 'b) Vênus', 'c) Júpiter', 'd) Saturno'],
+                correctAnswer: 'c) Júpiter'
+            },
+            {
+                question: 'Qual o menor e o maior país do mundo?',
+                image: 'mapa.jpg',
+                options: ['a) Brasil e Colômbia.', 'b) Vaticano e Rússia.', 'c) Chile e Índia.', 'd) Mônaco e Canadá.'],
+                correctAnswer: 'b) Vaticano e Rússia.'
+            },
+            {
+                question: ' Qual o grupo em que todas as palavras foram escritas corretamente?',
+                image: 'port.jpg',
+                options: ['a) Asterístico, beneficiente, meteorologia, entertido.', 'b) Asterisco, beneficente, meteorologia, entretido.', 'c) Asterisco, beneficente, metereologia, entretido.', 'd)  Asterístico, beneficiente, metereologia, entretido.'],
+                correctAnswer: 'b) Asterisco, beneficente, meteorologia, entretido.'
+            }
+
+        ];
+
+        const options = document.querySelectorAll('.option');
+        const scoreElement = document.getElementById('score');
+
+        let score = 0;
+        let chances = 2;
+        let currentQuestionIndex = 0;
+
+        loadQuestion(currentQuestionIndex);
+
+        options.forEach(option => {
+            option.addEventListener('click', checkAnswer);
+        });
+
+        function checkAnswer(event) {
+  const currentQuestionData = questions[currentQuestionIndex];
+  if (event.target.textContent === currentQuestionData.correctAnswer) {
+    score += 10;
+    scoreElement.textContent = score;
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+      loadQuestion(currentQuestionIndex);
+    } else {
+      alert('Parabéns! Você concluiu o quizz.');
+    }
+  } else {
+    chances--;
+    if (chances === 0) {
+      alert('Suas chances acabaram. Reinicie o quizz.');
+      location.reload();
+    } else {
+      alert(`Resposta incorreta. Você tem ${chances} chance(s) restante(s).`);
+    }
+  }
+}
+
+        function loadQuestion(index) {
+            const currentQuestionData = questions[index];
+            const questionElement = document.querySelector('.question');
+            const imageElement = questionElement.querySelector('img');
+            const optionsElements = questionElement.querySelectorAll('.option');
+
+            questionElement.querySelector('h2').textContent = `Questão ${index + 1}: ${currentQuestionData.question}`;
+            imageElement.src = currentQuestionData.image;
+
+            optionsElements.forEach((option, optionIndex) => {
+                option.textContent = currentQuestionData.options[optionIndex];
+            });
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+body {
+  font-family: 'YourChosenFont', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background: linear-gradient(135deg, #5a267c, #e0b1f1); 
+}
+
+.quiz-container {
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background: rgba( 0, 0, 0, 0.6);
+}
+
+.question {
+  margin-bottom: 20px;
+}
+
+.question img {
+  max-width: 100%;
+  height: auto;
+  margin: 10px 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.options-row button {
+  width: 45%;
+}
+
+.options button {
+  width: 300px;
+  margin: 5px;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  background-color: #661677;
+  cursor: pointer;
+  color: white;
+  border-radius: 10px;
+}
+
+.options button:hover {
+  background-color: #6c3f7f;
+}
+
+.score {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.imagens{
+  width: 300px;
+  height: 200px;
+  border-radius: 15px;
+}
+.title{
+  color: white;
+}
+.point{
+  color: white;
+}
+
+.quizz{
+  color: white;
+}
+.pontos{
+  color: white;
+}
+.score{
+  color: white;
+}
